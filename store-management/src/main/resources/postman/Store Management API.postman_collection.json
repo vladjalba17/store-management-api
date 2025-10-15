@@ -1,0 +1,480 @@
+{
+	"info": {
+		"_postman_id": "0f73a57d-7740-4d67-ab9d-a5c24526495e",
+		"name": "Store Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11919281"
+	},
+	"item": [
+		{
+			"name": "Add product (ADMIN/MANAGER)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{managerPass}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{managerUser}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"sku\": \"ABC-1\",\n  \"productName\": \"Mouse\",\n  \"productDescription\": \"Optic 1600 DPI\",\n  \"price\": 49.99,\n  \"stock\":10\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find product by SKU (ADMIN/MANAGER/EMPLOYEE)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{employeeUser}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{employeePass}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/products/ABC-1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"ABC-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all products(ADMIN/MANAGER/EMPLOYEE)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{employeeUser}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{employeePass}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/products",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all products page(ADMIN/MANAGER/EMPLOYEE)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{employeeUser}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{employeePass}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/products?active=true&page=0&size=2&sort=createdAt,desc",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"products"
+					],
+					"query": [
+						{
+							"key": "active",
+							"value": "true"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						},
+						{
+							"key": "sort",
+							"value": "createdAt,desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update product (ADMIN,MANAGER))",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{managerPass}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{managerUser}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"productName\": \"Mouse1\",\n  \"productDescription\": \"Optic 1000 DPI, USB-C\",\n  \"price\": 59.99,\n  \"stock\": 15,\n  \"active\": true\n}\n"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/products/ABC-1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"ABC-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update price  (ADMIN,MANAGER)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{adminPass}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{adminUser}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\": 77.77\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/products/ABC-1/price",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"ABC-1",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update stock(ADMIN,MANAGER)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{adminUser}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{adminPass}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stock\": 100\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/products/ABC-1/stock",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"ABC-1",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete product by SKU Copy",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{managerPass}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{managerUser}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/products/ABC-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"ABC-1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "adminUser",
+			"value": "admin"
+		},
+		{
+			"key": "adminPass",
+			"value": "admin123"
+		},
+		{
+			"key": "employeeUser",
+			"value": "user"
+		},
+		{
+			"key": "employeePass",
+			"value": "user123"
+		},
+		{
+			"key": "managerUser",
+			"value": ""
+		},
+		{
+			"key": "managerPass",
+			"value": ""
+		}
+	]
+}
